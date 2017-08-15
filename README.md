@@ -10,7 +10,7 @@ The technique that I settled on was actually a combination of two distinct, but 
  - Voronoi Tessellation
  - the Minimum Spanning Tree
 
-** Why use these two techniques together? **
+**Why use these two techniques together?**
 
 Voronoi Tessellation provides a valuable measure of the projected density immediately around a given 
 galaxy; in other words, it's a great example of a "nearest neighbor" approach to measuring the environment.

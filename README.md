@@ -38,9 +38,9 @@ In order to use the lss mapper, you will need to have some of the standard Pytho
 In addition to these, you'll need to install <a href="https://github.com/jakevdp/mst_clustering">MSTClustering from jakevdp</a>.
 The easiest way to install this is to use a package installer like pip, with:
 
-'''
+```
 pip install mst_clustering
-'''
+```
 
 ## Citing
 

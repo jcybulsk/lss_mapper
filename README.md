@@ -35,12 +35,13 @@ In order to use the lss mapper, you will need to have some of the standard Pytho
  - matplotlib
  - seaborn
 
-In addition to these, you'll need to install MSTClustering from jakevdp: https://github.com/jakevdp/mst_clustering
+In addition to these, you'll need to install <a href="https://github.com/jakevdp/mst_clustering">MSTClustering from jakevdp</a>.
 The easiest way to install this is to use a package installer like pip, with:
 
-**pip install mst_clustering**
+'''
+pip install mst_clustering
+'''
 
 ## Citing
 
-If you use this for your research, please cite my 2014 paper that introduced the idea of mapping the LSS of the 
-Universe using these two techniques: http://adsabs.harvard.edu/abs/2014MNRAS.439.3564C
+If you use this for your research, please cite <a href="http://adsabs.harvard.edu/abs/2014MNRAS.439.3564C">my 2014 paper</a> that introduced the idea of mapping the LSS of the Universe using these two techniques.

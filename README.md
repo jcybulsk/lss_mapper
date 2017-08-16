@@ -1,4 +1,11 @@
-# lss_mapper
+# LSS Mapper
+<br>
+<br>
+Mapping the large scale structure (LSS) of the Universe
+
+<p align="center">
+  <img src="img/VT_example" width="750">
+</p>
 
 ## Purpose
 During the course of my PhD thesis at the University of Massachusetts, I worked on the difficult challenge 

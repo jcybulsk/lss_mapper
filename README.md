@@ -4,7 +4,7 @@
 Mapping the large scale structure (LSS) of the Universe
 
 <p align="center">
-  <img src="img/VT_example" width="750">
+  <img src="img/VT_example.png" width="750">
 </p>
 
 ## Purpose

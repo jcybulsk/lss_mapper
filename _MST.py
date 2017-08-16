@@ -76,7 +76,7 @@ class MST:
         mst_coord1_dec = np.asarray(self.segments[1][1])
         c0 = SkyCoord(mst_coord0_ra, mst_coord0_dec, unit=u.deg)
         c1 = SkyCoord(mst_coord1_ra, mst_coord1_dec, unit=u.deg)
-        return np.log10(c0.separation(c1).degree*3600.0)
+        return np.log10(c0.separation(c1).degree)
         
     """ Plot the MST diagram (left) and the labeled structures 
         identified from the MST (right) """

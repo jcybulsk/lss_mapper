@@ -10,6 +10,8 @@ def plot_both_cumul_dist(cell_dens, mst_branches, *args, **kwargs):
 
     x_min = min([min(cell_dens), min(mst_branches)])
     x_max = max([max(cell_dens), max(mst_branches)])
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
     plt.plot(cell_dens, cell_dens_cumul, color='b')
     plt.plot(mst_branches, mst_branches_cumul, color='r')
     plt.xlim(x_min, x_max)
@@ -28,5 +30,8 @@ def plot_both_cumul_dist(cell_dens, mst_branches, *args, **kwargs):
                     color='red', linestyle='--')
         plt.hlines(y=mst_cumul_val, xmin=x_min, xmax=mst_interp, 
                     color='red', linestyle='--')
-    
+                    
+    ax.text(x_min+0.3, 0.8, 'VT', fontsize=15, color='blue')
+    ax.text(x_min+0.3, 0.7, 'MST', fontsize=15, color='red')
+    plt.xlabel('log$_{10}$ (VT Cell Dens or MST branch len)', fontsize=15)
     plt.ylabel('Cumulative Fraction', fontsize=14)

@@ -86,7 +86,14 @@ class MST:
         ylim = kwargs.get('ylim', None)
         ssize = kwargs.get('s', 8)
         savefigure = kwargs.get('savefigure', False)
+        figname = kwargs.get('figname', 'MST_figure.png')
         X = model.X_fit_
+        
+        # One little hack to get more clear color differentiation between the 
+        # points with cluster membership and without. Add 50(?) to the label numbers 
+        # of those that are cluster members.
+        model.labels_[model.labels_ > -1] += 50
+        
         fig, ax = plt.subplots(1, 2, figsize=(20, 7), sharex=True, sharey=True)
         for axi, full_graph, colors in zip(ax, [True, False], ['lightblue', model.labels_]):
             segments = model.get_graph_segments(full_graph=full_graph)
@@ -105,12 +112,13 @@ class MST:
         
         # Leave an option to save all the plots to output PNG files.
         if savefigure == True:
-        	pl.savefig('MST_figure.png', bbox_inches='tight')
-        
+        	pl.savefig(figname, bbox_inches='tight', dpi=250)
+
         
     """ Plot the cumulative distribution of MST branch lengths """
     def plot_mst_cumul(self, *args, **kwargs):
     	savefigure = kwargs.get('savefigure', False)
+    	figname = kwargs.get('figname', 'MST_cumul_dist.png')
         sns.distplot(self.seps, hist_kws=dict(cumulative=False), 
                      kde_kws=dict(cumulative=True))
         plt.xlabel('log$_{10}$ (MST branch length)', fontsize=15)
@@ -118,4 +126,4 @@ class MST:
 
         # Leave an option to save all the plots to output PNG files.
         if savefigure == True:
-        	pl.savefig('MST_cumul_dist.png', bbox_inches='tight')
+        	pl.savefig(figname, bbox_inches='tight')

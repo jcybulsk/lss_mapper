@@ -53,27 +53,23 @@ class VT:
         
     """ Calculate cell densities """
     def get_celldens(self, V):
-        cellx = []
-        celly = []
         holdx = []
         holdy = []
         celldens = []
         for reg in V.regions:
             if -1 in reg:
-                cellx.append([-1])
-                celly.append([-1])
                 celldens.append(-99)
             else:
                 for num in reg:
                     holdx.append(V.vertices[num][0])
                     holdy.append(V.vertices[num][1])
-                cellx.append(holdx)
-                celly.append(holdy)
                 cellarea = get_polyarea(holdx, holdy)
                 if cellarea == 0:
-                    # Some rare bad cells with area=0
-                    # Set those to null density
-                    celldens.append(-99)
+                    # There will always be one entry in the 
+                    # Voronoi regions list of lists what will be 
+                    # and empty list []. That's this case. It 
+                    # should be left out, so just do nothing here.
+                    pass
                 else:
                     celldens.append(np.log10(1.0/float(cellarea)))
                 holdx = []
@@ -85,6 +81,7 @@ class VT:
         xlim = kwargs.get('xlim', None)
         ylim = kwargs.get('ylim', None)
         savefigure = kwargs.get('savefigure', False)
+        figname = kwargs.get('figname', 'VT_figure.png')
         plt.figure(figsize=(14,8))
         for vind in V.ridge_vertices:
             (i1, i2) = sorted(vind)
@@ -101,11 +98,12 @@ class VT:
 
         # Leave an option to save all the plots to output PNG files.
         if savefigure == True:
-        	pl.savefig('VT_figure.png', bbox_inches='tight')
+        	pl.savefig(figname, bbox_inches='tight', dpi=250)
             
     """ Plot the cumulative distribution of VT cell densities """
     def plot_vt_cumul(self, V, *args, **kwargs):
         savefigure = kwargs.get('savefigure', False)
+        figname = kwargs.get('figname', 'VT_cumul_dist.png')
         vcalc = np.asarray(V.celldensity)
         celldens_calc = vcalc[vcalc > -99]
         sns.distplot(celldens_calc, hist_kws=dict(cumulative=False), 
@@ -115,4 +113,4 @@ class VT:
         
         # Leave an option to save all the plots to output PNG files.
         if savefigure == True:
-        	pl.savefig('VT_cumul_dist.png', bbox_inches='tight')
+        	pl.savefig(figname, bbox_inches='tight')

@@ -84,6 +84,7 @@ class VT:
     def plot_voronoi(self, V, *args, **kwargs):
         xlim = kwargs.get('xlim', None)
         ylim = kwargs.get('ylim', None)
+        savefigure = kwargs.get('savefigure', False)
         plt.figure(figsize=(14,8))
         for vind in V.ridge_vertices:
             (i1, i2) = sorted(vind)
@@ -97,12 +98,21 @@ class VT:
             plt.xlim(xlim)
         if ylim != None:
             plt.ylim(ylim)
+
+        # Leave an option to save all the plots to output PNG files.
+        if savefigure == True:
+        	pl.savefig('VT_figure.png', bbox_inches='tight')
             
     """ Plot the cumulative distribution of VT cell densities """
-    def plot_vt_cumul(self, V):
+    def plot_vt_cumul(self, V, *args, **kwargs):
+        savefigure = kwargs.get('savefigure', False)
         vcalc = np.asarray(V.celldensity)
         celldens_calc = vcalc[vcalc > -99]
         sns.distplot(celldens_calc, hist_kws=dict(cumulative=False), 
                      kde_kws=dict(cumulative=True))
         plt.xlabel('log$_{10}$ (VT Cell Densities)', fontsize=15)
         plt.ylabel('Norm. Counts/Cumul. Dist.', fontsize=15)
+        
+        # Leave an option to save all the plots to output PNG files.
+        if savefigure == True:
+        	pl.savefig('VT_cumul_dist.png', bbox_inches='tight')

@@ -34,14 +34,14 @@ class MST:
      - ra: right ascension (deg)
      - dec: declination (deg)
     
-    cutoff_scale (float): minimum size of edges. All edges larger 
+    cutoff_scale (float): minimum size of edges, also known as the 
+                          critical branch length. All edges larger 
                           than cutoff_scale will be removed.
     
     min_cluster_size (int): min number of galaxies in a cluster.
     
     n_neighbors (int): maximum number of neighbors of each point 
     used for approximate Euclidean MST algorithm.
-    
     
     ---- Attributes ----
     labels: integer specifying the structure to which a given galaxy 
@@ -85,6 +85,7 @@ class MST:
         xlim = kwargs.get('xlim', None)
         ylim = kwargs.get('ylim', None)
         ssize = kwargs.get('s', 8)
+        savefigure = kwargs.get('savefigure', False)
         X = model.X_fit_
         fig, ax = plt.subplots(1, 2, figsize=(20, 7), sharex=True, sharey=True)
         for axi, full_graph, colors in zip(ax, [True, False], ['lightblue', model.labels_]):
@@ -100,11 +101,21 @@ class MST:
                 plt.ylim(ylim)
     
         ax[0].set_title('Full Minimum Spanning Tree', size=16)
-        ax[1].set_title('Trimmed Minimum Spanning Tree', size=16);
+        ax[1].set_title('Trimmed Minimum Spanning Tree', size=16)
+        
+        # Leave an option to save all the plots to output PNG files.
+        if savefigure == True:
+        	pl.savefig('MST_figure.png', bbox_inches='tight')
+        
         
     """ Plot the cumulative distribution of MST branch lengths """
-    def plot_mst_cumul(self):
+    def plot_mst_cumul(self, *args, **kwargs):
+    	savefigure = kwargs.get('savefigure', False)
         sns.distplot(self.seps, hist_kws=dict(cumulative=False), 
                      kde_kws=dict(cumulative=True))
         plt.xlabel('log$_{10}$ (MST branch length)', fontsize=15)
         plt.ylabel('Norm. Counts/Cumul. Dist.', fontsize=15)
+
+        # Leave an option to save all the plots to output PNG files.
+        if savefigure == True:
+        	pl.savefig('MST_cumul_dist.png', bbox_inches='tight')

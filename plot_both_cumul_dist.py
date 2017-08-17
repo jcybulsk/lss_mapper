@@ -4,6 +4,7 @@ import pylab as pl
 
 def plot_both_cumul_dist(cell_dens, mst_branches, *args, **kwargs):
     savefigure = kwargs.get('savefigure', False)
+    figname = kwargs.get('figname', 'both_cumul_dist.png')
     dens_thresh = kwargs.get('dens_thresh', None)
     cell_dens = sorted(cell_dens[cell_dens > -99])
     mst_branches = sorted(mst_branches)
@@ -40,4 +41,4 @@ def plot_both_cumul_dist(cell_dens, mst_branches, *args, **kwargs):
     
     # Leave an option to save all the plots to output PNG files.
     if savefigure == True:
-    	pl.savefig('both_cumul_dist.png', bbox_inches='tight')
+    	pl.savefig(figname, bbox_inches='tight')
